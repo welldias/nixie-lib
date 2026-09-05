@@ -1,0 +1,6 @@
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Idle : cancel
+    Processing --> Done : finish
+    Done --> [*]

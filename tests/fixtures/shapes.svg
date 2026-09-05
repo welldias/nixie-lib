@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1932.79 156.338" width="1932.79" height="156.338" style="background:#FFFFFF">
+<style>text{font-family:'Inter',system-ui,sans-serif;}</style>
+<defs>
+<marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0, 8 2.5, 0 5" fill="#47474A" stroke="#47474A" stroke-width="0.75" stroke-linejoin="round" /></marker>
+<marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse"><polygon points="8 0, 0 2.5, 8 5" fill="#47474A" stroke="#47474A" stroke-width="0.75" stroke-linejoin="round" /></marker>
+</defs>
+<polyline class="edge" points="121.23,78.169 181.23,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="276.532,78.169 336.532,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="452.87,78.169 512.87,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="600.762,78.169 660.762,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="754.762,78.169 814.762,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="921.92,78.169 981.92,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="1093.92,78.169 1153.92,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="1269.22,78.169 1329.22,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="1421.56,78.169 1481.56,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="1562.19,78.169 1622.19,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="1746.38,78.169 1806.38,78.169" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="A" data-label="Rectangle" data-shape="rectangle">
+<rect x="20" y="59.719" width="101.23" height="36.9" rx="0" ry="0" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="70.615" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Rectangle</text>
+</g>
+<g class="node" data-id="B" data-label="Rounded" data-shape="rounded">
+<rect x="181.23" y="59.719" width="95.302" height="36.9" rx="6" ry="6" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="228.881" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Rounded</text>
+</g>
+<g class="node" data-id="C" data-label="Diamond" data-shape="diamond">
+<polygon points="394.701,20 452.87,78.169 394.701,136.338 336.532,78.169" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="394.701" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Diamond</text>
+</g>
+<g class="node" data-id="D" data-label="Stadium" data-shape="stadium">
+<rect x="512.87" y="59.719" width="87.892" height="36.9" rx="18.45" ry="18.45" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="556.816" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Stadium</text>
+</g>
+<g class="node" data-id="E" data-label="Circle" data-shape="circle">
+<circle cx="707.762" cy="78.169" r="47" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="707.762" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Circle</text>
+</g>
+<g class="node" data-id="F" data-label="Subroutine" data-shape="subroutine">
+<rect x="814.762" y="59.719" width="107.158" height="36.9" rx="0" ry="0" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" /><line x1="822.762" y1="59.719" x2="822.762" y2="96.619" stroke="#D4D4D4" stroke-width="0.75" /><line x1="913.92" y1="59.719" x2="913.92" y2="96.619" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="868.341" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Subroutine</text>
+</g>
+<g class="node" data-id="G" data-label="Double" data-shape="doublecircle">
+<circle cx="1037.92" cy="78.169" r="56" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" /><circle cx="1037.92" cy="78.169" r="51" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1037.92" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Double</text>
+</g>
+<g class="node" data-id="H" data-label="Hexagon" data-shape="hexagon">
+<polygon points="1163.14,59.719 1260,59.719 1269.22,78.169 1260,96.619 1163.14,96.619 1153.92,78.169" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1211.57" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Hexagon</text>
+</g>
+<g class="node" data-id="I" data-label="Cylinder" data-shape="cylinder">
+<rect x="1329.22" y="59.719" width="92.338" height="36.9" fill="#F9F9F9" stroke="none" /><line x1="1329.22" y1="59.719" x2="1329.22" y2="96.619" stroke="#D4D4D4" stroke-width="0.75" /><line x1="1421.56" y1="59.719" x2="1421.56" y2="96.619" stroke="#D4D4D4" stroke-width="0.75" /><ellipse cx="1375.39" cy="96.619" rx="46.169" ry="7" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" /><ellipse cx="1375.39" cy="59.719" rx="46.169" ry="7" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1375.39" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Cylinder</text>
+</g>
+<g class="node" data-id="J" data-label="Flag" data-shape="asymmetric">
+<polygon points="1493.56,59.719 1562.19,59.719 1562.19,96.619 1493.56,96.619 1481.56,78.169" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1521.87" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Flag</text>
+</g>
+<g class="node" data-id="K" data-label="Trapezoid" data-shape="trapezoid">
+<polygon points="1640.82,59.719 1727.75,59.719 1746.38,96.619 1622.19,96.619" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1684.28" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Trapezoid</text>
+</g>
+<g class="node" data-id="L" data-label="TrapAlt" data-shape="trapezoid-alt">
+<polygon points="1806.38,59.719 1912.79,59.719 1896.83,96.619 1822.34,96.619" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="1859.58" y="78.169" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">TrapAlt</text>
+</g>
+</svg>

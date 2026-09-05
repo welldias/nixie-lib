@@ -1,0 +1,18 @@
+erDiagram
+    CUSTOMER {
+        string id PK
+        string name
+        string email UK "unique contact email"
+    }
+    ORDER {
+        string id PK
+        string customerId FK
+        date placedAt
+    }
+    PRODUCT {
+        string id PK
+        string name
+        decimal price
+    }
+    CUSTOMER ||--o{ ORDER : places
+    ORDER }o--|| PRODUCT : contains

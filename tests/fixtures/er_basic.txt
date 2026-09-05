@@ -1,0 +1,8 @@
+                     places                       contains
+ ┌─────────────────┐     ┌──────────────────────┐     ┌───────────────┐
+ │CUSTOMER         │     │ORDER                 │     │PRODUCT        │
+ ├─────────────────┤     ├──────────────────────┤     ├───────────────┤
+ │PK string id     ││──┤○│PK string id          │○├──││PK string id   │
+ │string name      │     │FK string customerId  │     │string name    │
+ │UK string email  │     │date placedAt         │     │decimal price  │
+ └─────────────────┘     └──────────────────────┘     └───────────────┘

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 492" width="750" height="492" style="background:#FFFFFF">
+<style>text{font-family:'Inter',system-ui,sans-serif;}</style>
+<line x1="128" y1="432" x2="728" y2="432" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="375.333" x2="728" y2="375.333" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="318.667" x2="728" y2="318.667" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="262" x2="728" y2="262" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="205.333" x2="728" y2="205.333" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="148.667" x2="728" y2="148.667" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<line x1="128" y1="92" x2="728" y2="92" stroke="#E5E5E5" stroke-width="1" opacity="0.5" />
+<path d="M158,298.333 Q158,290.333 166,290.333 L190,290.333 Q198,290.333 198,298.333 L198,424 Q198,432 190,432 L166,432 Q158,432 158,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="5000" data-label="jan" />
+<path d="M258,241.667 Q258,233.667 266,233.667 L290,233.667 Q298,233.667 298,241.667 L298,424 Q298,432 290,432 L266,432 Q258,432 258,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="7000" data-label="feb" />
+<path d="M358,270 Q358,262 366,262 L390,262 Q398,262 398,270 L398,424 Q398,432 390,432 L366,432 Q358,432 358,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="6000" data-label="mar" />
+<path d="M458,185 Q458,177 466,177 L490,177 Q498,177 498,185 L498,424 Q498,432 490,432 L466,432 Q458,432 458,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="9000" data-label="apr" />
+<path d="M558,199.167 Q558,191.167 566,191.167 L590,191.167 Q598,191.167 598,199.167 L598,424 Q598,432 590,432 L566,432 Q558,432 558,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="8500" data-label="may" />
+<path d="M658,128.333 Q658,120.333 666,120.333 L690,120.333 Q698,120.333 698,128.333 L698,424 Q698,432 690,432 L666,432 Q658,432 658,424 Z" fill="#CEE0FD" stroke="#3B82F6" stroke-width="1.5" data-value="11000" data-label="jun" />
+<path d="M178,304.5 C211.333,277.333 244.667,250.165 278,247.833 C311.333,245.502 344.667,268.006 378,256.333 C411.333,244.661 444.667,198.813 478,182.667 C511.333,166.521 544.667,180.077 578,177 C611.333,173.923 644.667,154.211 678,134.5" fill="none" stroke="#0D5BA5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.12" transform="translate(0,2)" />
+<path d="M178,304.5 C211.333,277.333 244.667,250.165 278,247.833 C311.333,245.502 344.667,268.006 378,256.333 C411.333,244.661 444.667,198.813 478,182.667 C511.333,166.521 544.667,180.077 578,177 C611.333,173.923 644.667,154.211 678,134.5" fill="none" stroke="#0D5BA5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="178" cy="304.5" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<circle cx="278" cy="247.833" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<circle cx="378" cy="256.333" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<circle cx="478" cy="182.667" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<circle cx="578" cy="177" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<circle cx="678" cy="134.5" r="5" fill="#0D5BA5" stroke="#FFFFFF" stroke-width="2" />
+<text x="178" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">jan</text>
+<text x="278" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">feb</text>
+<text x="378" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">mar</text>
+<text x="478" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">apr</text>
+<text x="578" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">may</text>
+<text x="678" y="450" text-anchor="middle" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">jun</text>
+<text x="110" y="432" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">0</text>
+<text x="110" y="375.333" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">2000</text>
+<text x="110" y="318.667" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">4000</text>
+<text x="110" y="262" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">6000</text>
+<text x="110" y="205.333" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">8000</text>
+<text x="110" y="148.667" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">10000</text>
+<text x="110" y="92" text-anchor="end" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">12000</text>
+<text x="26" y="262" text-anchor="middle" transform="rotate(-90,26,262)" font-size="15" font-weight="500" dy="0.35em" fill="#7D7D7F">Revenue (USD)</text>
+<text x="375" y="40" text-anchor="middle" font-size="18" font-weight="600" dy="0.35em" fill="#27272A">Sales Revenue</text>
+<rect x="314.66" y="71" width="14" height="14" rx="3" fill="#3B82F6" />
+<text x="334.66" y="78" text-anchor="start" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">Bar 1</text>
+<line x1="380.732" y1="78" x2="394.732" y2="78" stroke="#0D5BA5" stroke-width="2.5" stroke-linecap="round" />
+<text x="400.732" y="78" text-anchor="start" font-size="14" font-weight="400" dy="0.35em" fill="#A9A9AA">Line 1</text>
+</svg>

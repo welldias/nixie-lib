@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 374.952 550" width="374.952" height="550" style="background:#FFFFFF">
+<style>text{font-family:'Inter',system-ui,sans-serif;}</style>
+<defs>
+<marker id="seq-arrow" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse"><polygon points="0 0, 8 2.5, 0 5" fill="#47474A" /></marker>
+<marker id="seq-arrow-open" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto-start-reverse"><polyline points="0 0, 8 2.5, 0 5" fill="none" stroke="#47474A" stroke-width="1" /></marker>
+</defs>
+<g class="block" data-type="loop" data-label="Health check">
+<rect x="30" y="213" width="240" height="100" fill="none" stroke="#D4D4D4" stroke-width="1" />
+<rect x="30" y="213" width="116.65" height="18" fill="#F4F4F4" stroke="#D4D4D4" stroke-width="1" />
+<text x="36" y="222" font-size="11" font-weight="600" fill="#7D7D7F" dy="3.85">loop [Health check]</text>
+</g>
+<g class="block" data-type="alt" data-label="is sick">
+<rect x="30" y="321" width="240" height="124" fill="none" stroke="#D4D4D4" stroke-width="1" />
+<rect x="30" y="321" width="71.77" height="18" fill="#F4F4F4" stroke="#D4D4D4" stroke-width="1" />
+<text x="36" y="330" font-size="11" font-weight="600" fill="#7D7D7F" dy="3.85">alt [is sick]</text>
+<line x1="30" y1="397" x2="270" y2="397" stroke="#939395" stroke-width="0.75" stroke-dasharray="6 4" />
+<text x="38" y="411" font-size="11" text-anchor="start" font-weight="400" fill="#A9A9AA" dy="3.85">[is well]</text>
+</g>
+<line class="lifeline" data-actor="A" x1="80" y1="70" x2="80" y2="520" stroke="#939395" stroke-width="0.75" stroke-dasharray="6 4" />
+<line class="lifeline" data-actor="B" x1="220" y1="70" x2="220" y2="520" stroke="#939395" stroke-width="0.75" stroke-dasharray="6 4" />
+<rect class="activation" data-actor="B" x="215" y="145" width="10" height="40" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<g class="message" data-from="A" data-to="B" data-label="Hello Bob, how are you?" data-line-style="solid" data-arrow-head="filled" data-self="false">
+<line x1="80" y1="145" x2="220" y2="145" stroke="#939395" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="150" y="135" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Hello Bob, how are you?</text>
+</g>
+<g class="message" data-from="B" data-to="A" data-label="I am good thanks!" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+<line x1="220" y1="185" x2="80" y2="185" stroke="#939395" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+<text x="150" y="175" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">I am good thanks!</text>
+</g>
+<g class="message" data-from="A" data-to="B" data-label="Ping" data-line-style="solid" data-arrow-head="filled" data-self="false">
+<line x1="80" y1="253" x2="220" y2="253" stroke="#939395" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="150" y="243" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Ping</text>
+</g>
+<g class="message" data-from="B" data-to="A" data-label="Pong" data-line-style="dashed" data-arrow-head="filled" data-self="false">
+<line x1="220" y1="293" x2="80" y2="293" stroke="#939395" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
+<text x="150" y="283" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Pong</text>
+</g>
+<g class="message" data-from="B" data-to="A" data-label="Not so good :(" data-line-style="solid" data-arrow-head="filled" data-self="false">
+<line x1="220" y1="361" x2="80" y2="361" stroke="#939395" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="150" y="351" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Not so good :(</text>
+</g>
+<g class="message" data-from="B" data-to="A" data-label="Feeling great" data-line-style="solid" data-arrow-head="filled" data-self="false">
+<line x1="220" y1="425" x2="80" y2="425" stroke="#939395" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="150" y="415" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Feeling great</text>
+</g>
+<g class="message" data-from="A" data-to="B" data-label="See you later" data-line-style="solid" data-arrow-head="open" data-self="false">
+<line x1="80" y1="480" x2="220" y2="480" stroke="#939395" stroke-width="1" marker-end="url(#seq-arrow-open)" />
+<text x="150" y="470" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">See you later</text>
+</g>
+<g class="note" data-actors="A,B">
+<polygon points="105.99,98 188.01,98 194.01,104 194.01,121 105.99,121" fill="#FFFFFF" stroke="#D4D4D4" stroke-width="0.75" />
+<polygon points="188.01,98 194.01,104 188.01,104" fill="#E5E5E5" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="150" y="109.5" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Session start</text>
+</g>
+<g class="note" data-actors="B">
+<polygon points="270,433 338.952,433 344.952,439 344.952,456 270,456" fill="#FFFFFF" stroke="#D4D4D4" stroke-width="0.75" />
+<polygon points="338.952,433 344.952,439 338.952,439" fill="#E5E5E5" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="307.476" y="444.5" font-size="11" text-anchor="middle" font-weight="400" fill="#A9A9AA" dy="3.85">Bob thinks</text>
+</g>
+<g class="actor" data-id="A" data-label="Alice" data-type="participant">
+<rect x="40" y="30" width="80" height="40" rx="4" ry="4" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="1" />
+<text x="80" y="50" font-size="13" text-anchor="middle" font-weight="500" fill="#27272A" dy="4.55">Alice</text>
+</g>
+<g class="actor" data-id="B" data-label="Bob" data-type="actor">
+<g transform="translate(202,32) scale(1.5)">
+<path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="none" stroke="#939395" stroke-width="0.666667" />
+<path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" fill="none" stroke="#939395" stroke-width="0.666667" />
+<path d="M5.62842 18.3563C7.08963 17.0398 9.39997 16 12 16C14.6 16 16.9104 17.0398 18.3716 18.3563" fill="none" stroke="#939395" stroke-width="0.666667" />
+</g>
+<text x="220" y="84" font-size="13" text-anchor="middle" font-weight="500" fill="#27272A" dy="4.55">Bob</text>
+</g>
+</svg>

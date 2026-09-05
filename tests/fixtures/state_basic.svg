@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 151.604 446.7" width="151.604" height="446.7" style="background:#FFFFFF">
+<style>text{font-family:'Inter',system-ui,sans-serif;}</style>
+<defs>
+<marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0, 8 2.5, 0 5" fill="#47474A" stroke="#47474A" stroke-width="0.75" stroke-linejoin="round" /></marker>
+<marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse"><polygon points="8 0, 0 2.5, 8 5" fill="#47474A" stroke="#47474A" stroke-width="0.75" stroke-linejoin="round" /></marker>
+</defs>
+<polyline class="edge" points="75.802,48 75.802,108" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="75.802,144.9 75.802,204.9" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="75.802,204.9 75.802,144.9" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="75.802,241.8 75.802,301.8" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" points="75.802,338.7 75.802,398.7" fill="none" stroke="#939395" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label">
+<rect x="56.285" y="159.75" width="39.034" height="30.3" rx="2" ry="2" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="1" />
+<text x="75.802" y="174.9" text-anchor="middle" font-size="11" font-weight="400" fill="#7D7D7F" dy="3.85">start</text>
+</g>
+<g class="edge-label">
+<rect x="50.939" y="159.75" width="49.726" height="30.3" rx="2" ry="2" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="1" />
+<text x="75.802" y="174.9" text-anchor="middle" font-size="11" font-weight="400" fill="#7D7D7F" dy="3.85">cancel</text>
+</g>
+<g class="edge-label">
+<rect x="54.503" y="256.65" width="42.598" height="30.3" rx="2" ry="2" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="1" />
+<text x="75.802" y="271.8" text-anchor="middle" font-size="11" font-weight="400" fill="#7D7D7F" dy="3.85">finish</text>
+</g>
+<g class="node" data-id="_start" data-label="" data-shape="state-start">
+<circle cx="75.802" cy="34" r="12" fill="#27272A" stroke="none" />
+
+</g>
+<g class="node" data-id="Idle" data-label="Idle" data-shape="rounded">
+<rect x="44.453" y="108" width="62.698" height="36.9" rx="6" ry="6" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="75.802" y="126.45" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Idle</text>
+</g>
+<g class="node" data-id="Processing" data-label="Processing" data-shape="rounded">
+<rect x="20" y="204.9" width="111.604" height="36.9" rx="6" ry="6" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="75.802" y="223.35" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Processing</text>
+</g>
+<g class="node" data-id="Done" data-label="Done" data-shape="rounded">
+<rect x="39.266" y="301.8" width="73.072" height="36.9" rx="6" ry="6" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="0.75" />
+<text x="75.802" y="320.25" text-anchor="middle" font-size="13" font-weight="500" fill="#27272A" dy="4.55">Done</text>
+</g>
+<g class="node" data-id="_end" data-label="" data-shape="state-end">
+<circle cx="75.802" cy="412.7" r="12" fill="none" stroke="#27272A" stroke-width="1.5" /><circle cx="75.802" cy="412.7" r="8" fill="#27272A" stroke="none" />
+
+</g>
+</svg>

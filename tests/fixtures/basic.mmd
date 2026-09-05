@@ -1,0 +1,6 @@
+graph TD
+    Start([Start]) --> Check{Valid input?}
+    Check -->|Yes| Process[Process data]
+    Check -->|No| Error[[Log error]]
+    Process --> Done((Done))
+    Error --> Done

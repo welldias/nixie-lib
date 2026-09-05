@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" width="700" height="180" style="background:#FFFFFF">
+<style>text{font-family:'Inter',system-ui,sans-serif;}.mono{font-family:'JetBrains Mono','SF Mono',monospace;}</style>
+<polyline class="er-relationship" points="180,90 270,90" fill="none" stroke="#939395" stroke-width="1" />
+<polyline class="er-relationship" points="430,90 520,90" fill="none" stroke="#939395" stroke-width="1" />
+<g class="entity" data-id="CUSTOMER" data-label="CUSTOMER">
+<rect x="40" y="40" width="140" height="100" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="1" />
+<rect x="40" y="40" width="140" height="34" fill="#F4F4F4" stroke="#D4D4D4" stroke-width="1" />
+<text x="110" y="57" text-anchor="middle" font-size="13" font-weight="700" fill="#27272A" dy="4.55">CUSTOMER</text>
+<line x1="40" y1="74" x2="180" y2="74" stroke="#D4D4D4" stroke-width="0.75" />
+<rect x="46" y="78" width="22.31" height="14" rx="2" ry="2" fill="#E9E9EA" /><text x="57.155" y="85" text-anchor="middle" dy="0.35em" font-size="9" font-weight="600" fill="#7D7D7F">PK</text><text x="76.31" y="85" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="172" y="85" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">id</tspan></text>
+<text x="48" y="107" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="172" y="107" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">name</tspan></text>
+<g><title>unique contact email</title><rect x="46" y="122" width="22.31" height="14" rx="2" ry="2" fill="#E9E9EA" /><text x="57.155" y="129" text-anchor="middle" dy="0.35em" font-size="9" font-weight="600" fill="#7D7D7F">UK</text><text x="76.31" y="129" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="172" y="129" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">email</tspan></text></g>
+</g>
+<g class="entity" data-id="ORDER" data-label="ORDER">
+<rect x="270" y="40" width="160" height="100" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="1" />
+<rect x="270" y="40" width="160" height="34" fill="#F4F4F4" stroke="#D4D4D4" stroke-width="1" />
+<text x="350" y="57" text-anchor="middle" font-size="13" font-weight="700" fill="#27272A" dy="4.55">ORDER</text>
+<line x1="270" y1="74" x2="430" y2="74" stroke="#D4D4D4" stroke-width="0.75" />
+<rect x="276" y="78" width="22.31" height="14" rx="2" ry="2" fill="#E9E9EA" /><text x="287.155" y="85" text-anchor="middle" dy="0.35em" font-size="9" font-weight="600" fill="#7D7D7F">PK</text><text x="306.31" y="85" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="422" y="85" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">id</tspan></text>
+<rect x="276" y="100" width="22.31" height="14" rx="2" ry="2" fill="#E9E9EA" /><text x="287.155" y="107" text-anchor="middle" dy="0.35em" font-size="9" font-weight="600" fill="#7D7D7F">FK</text><text x="306.31" y="107" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="422" y="107" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">customerId</tspan></text>
+<text x="278" y="129" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">date</tspan></text><text x="422" y="129" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">placedAt</tspan></text>
+</g>
+<g class="entity" data-id="PRODUCT" data-label="PRODUCT">
+<rect x="520" y="40" width="140" height="100" fill="#F9F9F9" stroke="#D4D4D4" stroke-width="1" />
+<rect x="520" y="40" width="140" height="34" fill="#F4F4F4" stroke="#D4D4D4" stroke-width="1" />
+<text x="590" y="57" text-anchor="middle" font-size="13" font-weight="700" fill="#27272A" dy="4.55">PRODUCT</text>
+<line x1="520" y1="74" x2="660" y2="74" stroke="#D4D4D4" stroke-width="0.75" />
+<rect x="526" y="78" width="22.31" height="14" rx="2" ry="2" fill="#E9E9EA" /><text x="537.155" y="85" text-anchor="middle" dy="0.35em" font-size="9" font-weight="600" fill="#7D7D7F">PK</text><text x="556.31" y="85" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="652" y="85" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">id</tspan></text>
+<text x="528" y="107" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">string</tspan></text><text x="652" y="107" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">name</tspan></text>
+<text x="528" y="129" class="mono" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#A9A9AA">decimal</tspan></text><text x="652" y="129" class="mono" text-anchor="end" dy="0.35em" font-size="11" font-weight="400"><tspan fill="#7D7D7F">price</tspan></text>
+</g>
+<line x1="184" y1="84" x2="184" y2="96" stroke="#939395" stroke-width="1.25" /><line x1="188" y1="84" x2="188" y2="96" stroke="#939395" stroke-width="1.25" /><line x1="266" y1="97" x2="254" y2="90" stroke="#939395" stroke-width="1.25" /><line x1="266" y1="90" x2="254" y2="90" stroke="#939395" stroke-width="1.25" /><line x1="266" y1="83" x2="254" y2="90" stroke="#939395" stroke-width="1.25" /><circle cx="250" cy="90" r="4" fill="#FFFFFF" stroke="#939395" stroke-width="1.25" />
+<line x1="434" y1="83" x2="446" y2="90" stroke="#939395" stroke-width="1.25" /><line x1="434" y1="90" x2="446" y2="90" stroke="#939395" stroke-width="1.25" /><line x1="434" y1="97" x2="446" y2="90" stroke="#939395" stroke-width="1.25" /><circle cx="450" cy="90" r="4" fill="#FFFFFF" stroke="#939395" stroke-width="1.25" /><line x1="516" y1="96" x2="516" y2="84" stroke="#939395" stroke-width="1.25" /><line x1="512" y1="96" x2="512" y2="84" stroke="#939395" stroke-width="1.25" />
+<rect x="204.137" y="79.85" width="41.726" height="20.3" rx="2" ry="2" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="0.5" />
+<text x="225" y="90" text-anchor="middle" font-size="11" font-weight="400" fill="#A9A9AA" dy="3.85">places</text><rect x="449.979" y="79.85" width="50.042" height="20.3" rx="2" ry="2" fill="#FFFFFF" stroke="#E5E5E5" stroke-width="0.5" />
+<text x="475" y="90" text-anchor="middle" font-size="11" font-weight="400" fill="#A9A9AA" dy="3.85">contains</text></svg>

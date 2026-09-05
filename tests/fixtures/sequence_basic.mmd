@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant A as Alice
+    actor B as Bob
+    Note over A,B: Session start
+    A->>+B: Hello Bob, how are you?
+    B-->>-A: I am good thanks!
+    loop Health check
+        A->>B: Ping
+        B-->>A: Pong
+    end
+    alt is sick
+        B->>A: Not so good :(
+    else is well
+        B->>A: Feeling great
+    end
+    Note right of B: Bob thinks
+    A-)B: See you later
