@@ -83,7 +83,7 @@ static nixie_rgb_t hsl_to_rgb(double h, double s, double l) {
 }
 
 void nixie_xy_series_color(int index, const char *accent_hex, const char *bg_hex, char out[8]) {
-    nixie_rgb_t rgb;
+    nixie_rgb_t rgb = { 0, 0, 0 };
     int parsed = accent_hex != NULL && nixie_parse_hex(accent_hex, &rgb) == 0;
     if (!parsed) {
         nixie_parse_hex(NIXIE_CHART_ACCENT_FALLBACK, &rgb);

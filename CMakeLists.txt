@@ -22,6 +22,10 @@ add_library(nixie_warnings INTERFACE)
 
 if(MSVC)
     target_compile_options(nixie_warnings INTERFACE /W4 /WX)
+    # The codebase already null-terminates every strncpy/sprintf call by hand;
+    # silence MSVC's "unsafe function" deprecation (C4996) for the standard
+    # C library calls used here and in bundled third-party headers (stb_image).
+    target_compile_definitions(nixie_warnings INTERFACE _CRT_SECURE_NO_WARNINGS)
 else()
     target_compile_options(nixie_warnings INTERFACE -Wall -Wextra -Wpedantic -Werror)
 endif()
