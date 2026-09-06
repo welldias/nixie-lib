@@ -24,7 +24,6 @@ typedef struct nixie_sequence_ascii_options {
  *
  * Returns a malloc'd string; free with nixie_free() (== free()).
  */
-char *nixie_sequence_render_ascii(
-    nixie_arena_t *arena, const nixie_seq_diagram_t *diagram, const nixie_sequence_ascii_options_t *opts);
+char *nixie_sequence_render_ascii(nixie_arena_t *arena, const nixie_seq_diagram_t *diagram, const nixie_sequence_ascii_options_t *opts);
 
 #endif /* NIXIE_SEQUENCE_RENDER_ASCII_H */

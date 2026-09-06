@@ -70,7 +70,7 @@ static char *normalize_label(nixie_arena_t *arena, const char *raw, size_t raw_l
     size_t start = 0, end = raw_len;
     if (raw_len >= 2 && raw[0] == '"' && raw[raw_len - 1] == '"') {
         start = 1;
-        end = raw_len - 1;
+        end   = raw_len - 1;
     }
 
     nixie_strbuf_t sb;
@@ -78,11 +78,12 @@ static char *normalize_label(nixie_arena_t *arena, const char *raw, size_t raw_l
 
     size_t i = start;
     while (i < end) {
-        if (raw[i] == '<' && i + 2 < end &&
-            (raw[i + 1] == 'b' || raw[i + 1] == 'B') && (raw[i + 2] == 'r' || raw[i + 2] == 'R')) {
+        if (raw[i] == '<' && i + 2 < end && (raw[i + 1] == 'b' || raw[i + 1] == 'B') && (raw[i + 2] == 'r' || raw[i + 2] == 'R')) {
             size_t j = i + 3;
-            if (j < end && raw[j] == ' ') j++;
-            if (j < end && raw[j] == '/') j++;
+            if (j < end && raw[j] == ' ')
+                j++;
+            if (j < end && raw[j] == '/')
+                j++;
             if (j < end && raw[j] == '>') {
                 nixie_strbuf_append_char(&sb, '\n');
                 i = j + 1;
@@ -175,8 +176,7 @@ static int try_direction_line(const char *line, nixie_direction_t *out) {
  * and already skipped by ends_with_brace() before this is tried)
  * ========================================================================== */
 
-static int try_state_alias(
-    nixie_arena_t *arena, const char *line, const char **id_out, size_t *id_len_out, char **label_out) {
+static int try_state_alias(nixie_arena_t *arena, const char *line, const char **id_out, size_t *id_len_out, char **label_out) {
     if (!starts_with_kw(line, "state")) {
         return 0;
     }
@@ -187,7 +187,7 @@ static int try_state_alias(
     }
 
     const char *label_start = line + i + 1;
-    const char *close = strchr(label_start, '"');
+    const char *close       = strchr(label_start, '"');
     if (close == NULL) {
         return 0;
     }
@@ -206,9 +206,9 @@ static int try_state_alias(
         return 0; /* no id, or trailing garbage after it */
     }
 
-    *id_out = line + j;
+    *id_out     = line + j;
     *id_len_out = id_len;
-    *label_out = normalize_label(arena, label_start, label_len);
+    *label_out  = normalize_label(arena, label_start, label_len);
     return 1;
 }
 
@@ -228,13 +228,12 @@ static char *make_pseudo_id(nixie_arena_t *arena, const char *prefix, int count)
     return nixie_arena_strdup(arena, buf);
 }
 
-static int try_transition(
-    nixie_arena_t *arena, nixie_mm_graph_t *g, const char *line, int *start_count, int *end_count) {
+static int try_transition(nixie_arena_t *arena, nixie_mm_graph_t *g, const char *line, int *start_count, int *end_count) {
     const char *p = line;
 
-    int src_is_start = 0;
+    int src_is_start      = 0;
     const char *src_start = p;
-    size_t src_len = 0;
+    size_t src_len        = 0;
     if (strncmp(p, "[*]", 3) == 0) {
         src_is_start = 1;
         p += 3;
@@ -253,9 +252,9 @@ static int try_transition(
     p += 3;
     p += skip_ws(p);
 
-    int dst_is_end = 0;
+    int dst_is_end        = 0;
     const char *dst_start = p;
-    size_t dst_len = 0;
+    size_t dst_len        = 0;
     if (strncmp(p, "[*]", 3) == 0) {
         dst_is_end = 1;
         p += 3;
@@ -273,7 +272,7 @@ static int try_transition(
         p++;
         p += skip_ws(p);
         size_t rest_len = strlen(p);
-        label = normalize_label(arena, p, rest_len);
+        label           = normalize_label(arena, p, rest_len);
         p += rest_len;
     }
 
@@ -285,30 +284,28 @@ static int try_transition(
 
     if (src_is_start) {
         (*start_count)++;
-        char *id = make_pseudo_id(arena, "_start", *start_count);
-        source_idx = nixie_mm_find_or_add_node(
-            arena, g, id, strlen(id), nixie_arena_strdup(arena, ""), NIXIE_SHAPE_STATE_START);
+        char *id   = make_pseudo_id(arena, "_start", *start_count);
+        source_idx = nixie_mm_find_or_add_node(arena, g, id, strlen(id), nixie_arena_strdup(arena, ""), NIXIE_SHAPE_STATE_START);
     } else {
         source_idx = nixie_mm_find_or_add_node(arena, g, src_start, src_len, NULL, NIXIE_SHAPE_ROUNDED);
     }
 
     if (dst_is_end) {
         (*end_count)++;
-        char *id = make_pseudo_id(arena, "_end", *end_count);
-        target_idx =
-            nixie_mm_find_or_add_node(arena, g, id, strlen(id), nixie_arena_strdup(arena, ""), NIXIE_SHAPE_STATE_END);
+        char *id   = make_pseudo_id(arena, "_end", *end_count);
+        target_idx = nixie_mm_find_or_add_node(arena, g, id, strlen(id), nixie_arena_strdup(arena, ""), NIXIE_SHAPE_STATE_END);
     } else {
         target_idx = nixie_mm_find_or_add_node(arena, g, dst_start, dst_len, NULL, NIXIE_SHAPE_ROUNDED);
     }
 
     nixie_mm_ensure_edge_capacity(arena, g);
     nixie_mm_edge_t *e = &g->edges[g->edge_count++];
-    e->source_idx = source_idx;
-    e->target_idx = target_idx;
-    e->label = label;
-    e->style = NIXIE_EDGE_SOLID;
+    e->source_idx      = source_idx;
+    e->target_idx      = target_idx;
+    e->label           = label;
+    e->style           = NIXIE_EDGE_SOLID;
     e->has_arrow_start = 0;
-    e->has_arrow_end = 1;
+    e->has_arrow_end   = 1;
 
     return 1;
 }
@@ -347,10 +344,10 @@ static int try_state_description(nixie_arena_t *arena, nixie_mm_graph_t *g, cons
 
 nixie_parse_result_t nixie_state_parse(nixie_arena_t *arena, const char *text) {
     nixie_parse_result_t result;
-    result.graph = NULL;
-    result.error = NIXIE_OK;
+    result.graph            = NULL;
+    result.error            = NIXIE_OK;
     result.error_message[0] = '\0';
-    result.error_line = -1;
+    result.error_line       = -1;
 
     nixie_sig_lines_t sig = nixie_split_significant_lines(arena, text);
 
@@ -362,15 +359,14 @@ nixie_parse_result_t nixie_state_parse(nixie_arena_t *arena, const char *text) {
 
     if (!is_state_header(sig.lines[0].content)) {
         result.error = NIXIE_ERROR_UNKNOWN_HEADER;
-        snprintf(result.error_message, sizeof(result.error_message),
-                 "Invalid mermaid header: \"%s\". Expected \"stateDiagram-v2\".", sig.lines[0].content);
+        snprintf(result.error_message, sizeof(result.error_message), "Invalid mermaid header: \"%s\". Expected \"stateDiagram-v2\".", sig.lines[0].content);
         result.error_line = sig.lines[0].line_no;
         return result;
     }
 
     nixie_mm_graph_t *graph = (nixie_mm_graph_t *)nixie_arena_alloc_zeroed(arena, sizeof(nixie_mm_graph_t));
-    graph->direction = NIXIE_DIR_TD;
-    graph->node_index = nixie_strmap_create(arena, 64);
+    graph->direction        = NIXIE_DIR_TD;
+    graph->node_index       = nixie_strmap_create(arena, 64);
 
     int start_count = 0, end_count = 0;
 

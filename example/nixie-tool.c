@@ -41,11 +41,11 @@ static char *read_file(const char *path) {
 }
 
 int main(int argc, char **argv) {
-    const char *input_path = NULL;
+    const char *input_path      = NULL;
     const char *png_output_path = NULL;
-    const char *font_path = NULL;
-    double scale = 1.0;
-    output_mode_t mode = OUTPUT_NONE;
+    const char *font_path       = NULL;
+    double scale                = 1.0;
+    output_mode_t mode          = OUTPUT_NONE;
 
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--svg") == 0) {
@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    render_options.theme       = NIXIE_THEME_GITHUB_DARK;
+    render_options.theme       = NIXIE_THEME_CATPPUCCIN_MOCHA;
     render_options.transparent = 1;
     render_options.use_unicode = 1;
     render_options.font_path   = font_path;

@@ -8,16 +8,16 @@
  * object (fg mixed into bg at N%). MIX.text (100) is not used as a mix -- the
  * primary text color is just fg directly. */
 enum {
-    MIX_TEXT_SEC = 60,
-    MIX_TEXT_MUTED = 40,
-    MIX_TEXT_FAINT = 25,
-    MIX_LINE = 50,
-    MIX_ARROW = 85,
-    MIX_NODE_FILL = 3,
-    MIX_NODE_STROKE = 20,
+    MIX_TEXT_SEC     = 60,
+    MIX_TEXT_MUTED   = 40,
+    MIX_TEXT_FAINT   = 25,
+    MIX_LINE         = 50,
+    MIX_ARROW        = 85,
+    MIX_NODE_FILL    = 3,
+    MIX_NODE_STROKE  = 20,
     MIX_GROUP_HEADER = 5,
     MIX_INNER_STROKE = 12,
-    MIX_KEY_BADGE = 10
+    MIX_KEY_BADGE    = 10
 };
 
 /* 15 built-in palettes, hex values ported verbatim from
@@ -86,9 +86,21 @@ const nixie_diagram_colors_t NIXIE_THEMES[NIXIE_THEME_COUNT] = {
 };
 
 static const char *NIXIE_THEME_NAMES[NIXIE_THEME_COUNT] = {
-    "zinc-light", "zinc-dark", "tokyo-night", "tokyo-night-storm", "tokyo-night-light",
-    "catppuccin-mocha", "catppuccin-latte", "nord", "nord-light", "dracula",
-    "github-light", "github-dark", "solarized-light", "solarized-dark", "one-dark",
+    "zinc-light",
+    "zinc-dark",
+    "tokyo-night",
+    "tokyo-night-storm",
+    "tokyo-night-light",
+    "catppuccin-mocha",
+    "catppuccin-latte",
+    "nord",
+    "nord-light",
+    "dracula",
+    "github-light",
+    "github-dark",
+    "solarized-light",
+    "solarized-dark",
+    "one-dark",
 };
 
 const nixie_diagram_colors_t *nixie_theme_lookup(nixie_theme_name_t name) {
@@ -124,16 +136,16 @@ static void resolve_hex(const char *value, nixie_rgb_t fallback, char out[8]) {
 
 void nixie_resolve_colors(const nixie_diagram_colors_t *colors, nixie_resolved_colors_t *out) {
     const nixie_diagram_colors_t *defaults = &NIXIE_THEMES[NIXIE_THEME_ZINC_LIGHT];
-    const char *bg_str = (colors != NULL && colors->bg != NULL) ? colors->bg : defaults->bg;
-    const char *fg_str = (colors != NULL && colors->fg != NULL) ? colors->fg : defaults->fg;
-    const char *line_str = (colors != NULL) ? colors->line : NULL;
-    const char *accent_str = (colors != NULL) ? colors->accent : NULL;
-    const char *muted_str = (colors != NULL) ? colors->muted : NULL;
-    const char *surface_str = (colors != NULL) ? colors->surface : NULL;
-    const char *border_str = (colors != NULL) ? colors->border : NULL;
+    const char *bg_str                     = (colors != NULL && colors->bg != NULL) ? colors->bg : defaults->bg;
+    const char *fg_str                     = (colors != NULL && colors->fg != NULL) ? colors->fg : defaults->fg;
+    const char *line_str                   = (colors != NULL) ? colors->line : NULL;
+    const char *accent_str                 = (colors != NULL) ? colors->accent : NULL;
+    const char *muted_str                  = (colors != NULL) ? colors->muted : NULL;
+    const char *surface_str                = (colors != NULL) ? colors->surface : NULL;
+    const char *border_str                 = (colors != NULL) ? colors->border : NULL;
 
-    nixie_rgb_t bg = {255, 255, 255};
-    nixie_rgb_t fg = {0x27, 0x27, 0x2a};
+    nixie_rgb_t bg = { 255, 255, 255 };
+    nixie_rgb_t fg = { 0x27, 0x27, 0x2a };
     nixie_parse_hex(bg_str, &bg);
     nixie_parse_hex(fg_str, &fg);
 

@@ -7,8 +7,8 @@
 
 void nixie_strbuf_init(nixie_strbuf_t *sb) {
     sb->data = NULL;
-    sb->len = 0;
-    sb->cap = 0;
+    sb->len  = 0;
+    sb->cap  = 0;
 }
 
 static int strbuf_reserve(nixie_strbuf_t *sb, size_t extra) {
@@ -28,7 +28,7 @@ static int strbuf_reserve(nixie_strbuf_t *sb, size_t extra) {
     }
 
     sb->data = new_data;
-    sb->cap = new_cap;
+    sb->cap  = new_cap;
     return 1;
 }
 
@@ -99,15 +99,15 @@ char *nixie_strbuf_release(nixie_strbuf_t *sb) {
     }
 
     char *data = sb->data;
-    sb->data = NULL;
-    sb->len = 0;
-    sb->cap = 0;
+    sb->data   = NULL;
+    sb->len    = 0;
+    sb->cap    = 0;
     return data;
 }
 
 void nixie_strbuf_free(nixie_strbuf_t *sb) {
     free(sb->data);
     sb->data = NULL;
-    sb->len = 0;
-    sb->cap = 0;
+    sb->len  = 0;
+    sb->cap  = 0;
 }

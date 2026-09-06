@@ -24,7 +24,6 @@ typedef struct nixie_ascii_options {
  *
  * Returns a malloc'd string; free with nixie_free() (== free()).
  */
-char *nixie_flowchart_render_ascii(
-    nixie_arena_t *arena, const nixie_positioned_flowchart_t *pf, const nixie_ascii_options_t *opts);
+char *nixie_flowchart_render_ascii(nixie_arena_t *arena, const nixie_positioned_flowchart_t *pf, const nixie_ascii_options_t *opts);
 
 #endif /* NIXIE_FLOWCHART_RENDER_ASCII_H */

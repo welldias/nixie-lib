@@ -33,8 +33,6 @@ void nixie_mm_ensure_edge_capacity(nixie_arena_t *arena, nixie_mm_graph_t *g);
  * mirroring beautiful-mermaid/src/parser.ts's registerNode()). `label` may
  * be NULL, meaning "use the id itself as the label".
  */
-int nixie_mm_find_or_add_node(
-    nixie_arena_t *arena, nixie_mm_graph_t *g, const char *id, size_t id_len,
-    char *label, nixie_node_shape_t shape);
+int nixie_mm_find_or_add_node(nixie_arena_t *arena, nixie_mm_graph_t *g, const char *id, size_t id_len, char *label, nixie_node_shape_t shape);
 
 #endif /* NIXIE_FLOWCHART_GRAPH_BUILD_H */

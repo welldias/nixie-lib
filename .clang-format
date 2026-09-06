@@ -7,4 +7,5 @@ AlignConsecutiveAssignments: true
 AlignArrayOfStructures: Left
 Cpp11BracedListStyle: false
 AllowShortFunctionsOnASingleLine : false
+AllowShortEnumsOnASingleLine: false
 ...

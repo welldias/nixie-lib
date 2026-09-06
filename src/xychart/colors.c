@@ -5,8 +5,8 @@
 
 static void rgb_to_hsl(nixie_rgb_t c, double *h, double *s, double *l) {
     double r = c.r / 255.0, g = c.g / 255.0, b = c.b / 255.0;
-    double max = r > g ? (r > b ? r : b) : (g > b ? g : b);
-    double min = r < g ? (r < b ? r : b) : (g < b ? g : b);
+    double max       = r > g ? (r > b ? r : b) : (g > b ? g : b);
+    double min       = r < g ? (r < b ? r : b) : (g < b ? g : b);
     double lightness = (max + min) / 2.0;
 
     if (max == min) {
@@ -16,7 +16,7 @@ static void rgb_to_hsl(nixie_rgb_t c, double *h, double *s, double *l) {
         return;
     }
 
-    double d = max - min;
+    double d   = max - min;
     double sat = lightness > 0.5 ? d / (2.0 - max - min) : d / (max + min);
 
     double hue;
@@ -35,8 +35,10 @@ static void rgb_to_hsl(nixie_rgb_t c, double *h, double *s, double *l) {
 
 static int round_clamp255(double v) {
     int r = (int)(v + 0.5);
-    if (r < 0) r = 0;
-    if (r > 255) r = 255;
+    if (r < 0)
+        r = 0;
+    if (r > 255)
+        r = 255;
     return r;
 }
 
@@ -47,12 +49,31 @@ static nixie_rgb_t hsl_to_rgb(double h, double s, double l) {
     double m = li - c / 2.0;
     double r, g, b;
 
-    if (h < 60) { r = c; g = x; b = 0; }
-    else if (h < 120) { r = x; g = c; b = 0; }
-    else if (h < 180) { r = 0; g = c; b = x; }
-    else if (h < 240) { r = 0; g = x; b = c; }
-    else if (h < 300) { r = x; g = 0; b = c; }
-    else { r = c; g = 0; b = x; }
+    if (h < 60) {
+        r = c;
+        g = x;
+        b = 0;
+    } else if (h < 120) {
+        r = x;
+        g = c;
+        b = 0;
+    } else if (h < 180) {
+        r = 0;
+        g = c;
+        b = x;
+    } else if (h < 240) {
+        r = 0;
+        g = x;
+        b = c;
+    } else if (h < 300) {
+        r = x;
+        g = 0;
+        b = c;
+    } else {
+        r = c;
+        g = 0;
+        b = x;
+    }
 
     nixie_rgb_t out;
     out.r = (unsigned char)round_clamp255((r + m) * 255.0);
@@ -76,10 +97,12 @@ void nixie_xy_series_color(int index, const char *accent_hex, const char *bg_hex
     double h, s, l;
     rgb_to_hsl(rgb, &h, &s, &l);
     double chart_s = s;
-    if (chart_s < 55.0) chart_s = 55.0;
-    if (chart_s > 85.0) chart_s = 85.0;
+    if (chart_s < 55.0)
+        chart_s = 55.0;
+    if (chart_s > 85.0)
+        chart_s = 85.0;
 
-    int tier = (index + 1) / 2;
+    int tier      = (index + 1) / 2;
     int odd_index = (index % 2) == 1;
 
     int dark_bg = 0;
@@ -99,15 +122,18 @@ void nixie_xy_series_color(int index, const char *accent_hex, const char *bg_hex
     double lightness;
     if (dark) {
         lightness = 48.0 - (double)tier * 13.0;
-        if (lightness < 25.0) lightness = 25.0;
+        if (lightness < 25.0)
+            lightness = 25.0;
     } else {
         lightness = 55.0 + (double)tier * 11.0;
-        if (lightness > 78.0) lightness = 78.0;
+        if (lightness > 78.0)
+            lightness = 78.0;
     }
 
     double h_shift = (dark ? -8.0 : 12.0) * (double)tier;
-    double new_h = fmod(h + h_shift, 360.0);
-    if (new_h < 0.0) new_h += 360.0;
+    double new_h   = fmod(h + h_shift, 360.0);
+    if (new_h < 0.0)
+        new_h += 360.0;
 
     nixie_rgb_t result = hsl_to_rgb(new_h, chart_s, lightness);
     nixie_format_hex(result, out);

@@ -33,9 +33,9 @@ typedef struct nixie_positioned_axis {
 typedef struct nixie_positioned_bar {
     double x, y, w, h;
     double value;
-    char *label; /* nullable */
+    char *label;      /* nullable */
     int series_index; /* index within its own type (bar), for grouping */
-    int color_index;   /* global index across all series */
+    int color_index;  /* global index across all series */
 } nixie_positioned_bar_t;
 
 typedef struct nixie_xy_line_point {

@@ -12,12 +12,14 @@
 #endif
 
 unsigned char *nixie_png_encode(const nixie_canvas_t *canvas, size_t *out_size) {
-    int len = 0;
+    int len            = 0;
     unsigned char *png = stbi_write_png_to_mem(canvas->pixels, canvas->w * 4, canvas->w, canvas->h, 4, &len);
     if (png == NULL) {
-        if (out_size != NULL) *out_size = 0;
+        if (out_size != NULL)
+            *out_size = 0;
         return NULL;
     }
-    if (out_size != NULL) *out_size = (size_t)len;
+    if (out_size != NULL)
+        *out_size = (size_t)len;
     return png;
 }

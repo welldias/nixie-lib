@@ -21,7 +21,6 @@ typedef struct nixie_er_ascii_options {
  *
  * Returns a malloc'd string; free with nixie_free() (== free()).
  */
-char *nixie_er_render_ascii(
-    nixie_arena_t *arena, const nixie_positioned_er_diagram_t *pcd, const nixie_er_ascii_options_t *opts);
+char *nixie_er_render_ascii(nixie_arena_t *arena, const nixie_positioned_er_diagram_t *pcd, const nixie_er_ascii_options_t *opts);
 
 #endif /* NIXIE_ER_RENDER_ASCII_H */

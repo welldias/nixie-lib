@@ -35,10 +35,9 @@ nixie_strmap_t *nixie_strmap_create(nixie_arena_t *a, size_t bucket_count) {
         return NULL;
     }
 
-    m->arena = a;
+    m->arena        = a;
     m->bucket_count = bucket_count;
-    m->buckets = (nixie_strmap_entry_t **)nixie_arena_alloc_zeroed(
-        a, bucket_count * sizeof(nixie_strmap_entry_t *));
+    m->buckets      = (nixie_strmap_entry_t **)nixie_arena_alloc_zeroed(a, bucket_count * sizeof(nixie_strmap_entry_t *));
     if (m->buckets == NULL) {
         return NULL;
     }
@@ -73,11 +72,10 @@ void nixie_strmap_put(nixie_strmap_t *m, const char *key, size_t len, int value)
         }
     }
 
-    nixie_strmap_entry_t *entry = (nixie_strmap_entry_t *)nixie_arena_alloc(
-        m->arena, sizeof(nixie_strmap_entry_t));
-    entry->key = nixie_arena_strndup(m->arena, key, len);
-    entry->key_len = len;
-    entry->value = value;
-    entry->next = m->buckets[idx];
-    m->buckets[idx] = entry;
+    nixie_strmap_entry_t *entry = (nixie_strmap_entry_t *)nixie_arena_alloc(m->arena, sizeof(nixie_strmap_entry_t));
+    entry->key                  = nixie_arena_strndup(m->arena, key, len);
+    entry->key_len              = len;
+    entry->value                = value;
+    entry->next                 = m->buckets[idx];
+    m->buckets[idx]             = entry;
 }

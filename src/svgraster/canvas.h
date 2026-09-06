@@ -32,8 +32,6 @@ void nixie_canvas_fill_polygons(nixie_canvas_t *canvas, const nixie_polyline_lis
  * nixie_canvas_fill_polygons. `arena` backs the temporary quad/disc point
  * lists.
  */
-void nixie_canvas_stroke_polyline(nixie_canvas_t *canvas, nixie_arena_t *arena, const nixie_point_t *points, int count,
-                                   int closed, double stroke_width, nixie_rgb_t color, double opacity, double dash_on,
-                                   double dash_off);
+void nixie_canvas_stroke_polyline(nixie_canvas_t *canvas, nixie_arena_t *arena, const nixie_point_t *points, int count, int closed, double stroke_width, nixie_rgb_t color, double opacity, double dash_on, double dash_off);
 
 #endif /* NIXIE_SVGRASTER_CANVAS_H */

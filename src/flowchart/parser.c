@@ -70,7 +70,7 @@ static char *normalize_label(nixie_arena_t *arena, const char *raw, size_t raw_l
     size_t start = 0, end = raw_len;
     if (raw_len >= 2 && raw[0] == '"' && raw[raw_len - 1] == '"') {
         start = 1;
-        end = raw_len - 1;
+        end   = raw_len - 1;
     }
 
     nixie_strbuf_t sb;
@@ -78,11 +78,12 @@ static char *normalize_label(nixie_arena_t *arena, const char *raw, size_t raw_l
 
     size_t i = start;
     while (i < end) {
-        if (raw[i] == '<' && i + 2 < end &&
-            (raw[i + 1] == 'b' || raw[i + 1] == 'B') && (raw[i + 2] == 'r' || raw[i + 2] == 'R')) {
+        if (raw[i] == '<' && i + 2 < end && (raw[i + 1] == 'b' || raw[i + 1] == 'B') && (raw[i + 2] == 'r' || raw[i + 2] == 'R')) {
             size_t j = i + 3;
-            if (j < end && raw[j] == ' ') j++;
-            if (j < end && raw[j] == '/') j++;
+            if (j < end && raw[j] == ' ')
+                j++;
+            if (j < end && raw[j] == '/')
+                j++;
             if (j < end && raw[j] == '>') {
                 nixie_strbuf_append_char(&sb, '\n');
                 i = j + 1;
@@ -118,18 +119,18 @@ typedef struct {
 } node_pattern_t;
 
 static const node_pattern_t NODE_PATTERNS[] = {
-    {"(((", ")))", NIXIE_SHAPE_DOUBLECIRCLE},
-    {"([", "])", NIXIE_SHAPE_STADIUM},
-    {"((", "))", NIXIE_SHAPE_CIRCLE},
-    {"[[", "]]", NIXIE_SHAPE_SUBROUTINE},
-    {"[(", ")]", NIXIE_SHAPE_CYLINDER},
-    {"[/", "\\]", NIXIE_SHAPE_TRAPEZOID},
-    {"[\\", "/]", NIXIE_SHAPE_TRAPEZOID_ALT},
-    {">", "]", NIXIE_SHAPE_ASYMMETRIC},
-    {"{{", "}}", NIXIE_SHAPE_HEXAGON},
-    {"[", "]", NIXIE_SHAPE_RECTANGLE},
-    {"(", ")", NIXIE_SHAPE_ROUNDED},
-    {"{", "}", NIXIE_SHAPE_DIAMOND},
+    { "(((", ")))", NIXIE_SHAPE_DOUBLECIRCLE  },
+    { "([",  "])",  NIXIE_SHAPE_STADIUM       },
+    { "((",  "))",  NIXIE_SHAPE_CIRCLE        },
+    { "[[",  "]]",  NIXIE_SHAPE_SUBROUTINE    },
+    { "[(",  ")]",  NIXIE_SHAPE_CYLINDER      },
+    { "[/",  "\\]", NIXIE_SHAPE_TRAPEZOID     },
+    { "[\\", "/]",  NIXIE_SHAPE_TRAPEZOID_ALT },
+    { ">",   "]",   NIXIE_SHAPE_ASYMMETRIC    },
+    { "{{",  "}}",  NIXIE_SHAPE_HEXAGON       },
+    { "[",   "]",   NIXIE_SHAPE_RECTANGLE     },
+    { "(",   ")",   NIXIE_SHAPE_ROUNDED       },
+    { "{",   "}",   NIXIE_SHAPE_DIAMOND       },
 };
 #define NODE_PATTERN_COUNT (sizeof(NODE_PATTERNS) / sizeof(NODE_PATTERNS[0]))
 
@@ -139,44 +140,43 @@ static const node_pattern_t NODE_PATTERNS[] = {
  * shorthand suffix (parsed and discarded -- classDef/class assignment is out
  * of scope for this v1 slice). Returns 0 if no node id is present at all.
  */
-static int consume_node(
-    nixie_arena_t *arena, nixie_mm_graph_t *g, const char *text, int *index_out, size_t *consumed_out) {
+static int consume_node(nixie_arena_t *arena, nixie_mm_graph_t *g, const char *text, int *index_out, size_t *consumed_out) {
     size_t id_len = scan_id_len(text);
     if (id_len == 0) {
         return 0;
     }
 
     const char *after_id = text + id_len;
-    size_t shape_len = 0;
+    size_t shape_len     = 0;
     int idx;
 
     const node_pattern_t *matched = NULL;
-    const char *label_start = NULL;
-    size_t label_len = 0;
+    const char *label_start       = NULL;
+    size_t label_len              = 0;
 
     for (size_t pi = 0; pi < NODE_PATTERN_COUNT; pi++) {
         const node_pattern_t *pat = &NODE_PATTERNS[pi];
-        size_t open_len = strlen(pat->open);
+        size_t open_len           = strlen(pat->open);
         if (strncmp(after_id, pat->open, open_len) != 0) {
             continue;
         }
         const char *search_from = after_id + open_len;
-        const char *close_ptr = strstr(search_from, pat->close);
+        const char *close_ptr   = strstr(search_from, pat->close);
         if (close_ptr == NULL) {
             continue;
         }
         label_start = search_from;
-        label_len = (size_t)(close_ptr - search_from);
-        shape_len = open_len + label_len + strlen(pat->close);
-        matched = pat;
+        label_len   = (size_t)(close_ptr - search_from);
+        shape_len   = open_len + label_len + strlen(pat->close);
+        matched     = pat;
         break;
     }
 
     if (matched != NULL) {
         char *label = normalize_label(arena, label_start, label_len);
-        idx = nixie_mm_find_or_add_node(arena, g, text, id_len, label, matched->shape);
+        idx         = nixie_mm_find_or_add_node(arena, g, text, id_len, label, matched->shape);
     } else {
-        idx = nixie_mm_find_or_add_node(arena, g, text, id_len, NULL, NIXIE_SHAPE_RECTANGLE);
+        idx       = nixie_mm_find_or_add_node(arena, g, text, id_len, NULL, NIXIE_SHAPE_RECTANGLE);
         shape_len = 0;
     }
 
@@ -190,7 +190,7 @@ static int consume_node(
         }
     }
 
-    *index_out = idx;
+    *index_out    = idx;
     *consumed_out = consumed;
     return 1;
 }
@@ -209,8 +209,8 @@ static int consume_node_group(nixie_arena_t *arena, nixie_mm_graph_t *g, const c
         return 0;
     }
 
-    size_t cap = 4;
-    int *ids = (int *)nixie_arena_alloc(arena, cap * sizeof(int));
+    size_t cap   = 4;
+    int *ids     = (int *)nixie_arena_alloc(arena, cap * sizeof(int));
     size_t count = 0;
     ids[count++] = first_idx;
 
@@ -231,17 +231,17 @@ static int consume_node_group(nixie_arena_t *arena, nixie_mm_graph_t *g, const c
 
         if (count == cap) {
             size_t new_cap = cap * 2;
-            int *new_ids = (int *)nixie_arena_alloc(arena, new_cap * sizeof(int));
+            int *new_ids   = (int *)nixie_arena_alloc(arena, new_cap * sizeof(int));
             memcpy(new_ids, ids, count * sizeof(int));
             ids = new_ids;
             cap = new_cap;
         }
         ids[count++] = next_idx;
-        pos = after_amp + next_consumed;
+        pos          = after_amp + next_consumed;
     }
 
-    out->ids = ids;
-    out->count = count;
+    out->ids      = ids;
+    out->count    = count;
     out->consumed = pos;
     return 1;
 }
@@ -257,21 +257,19 @@ typedef struct {
 } arrow_op_t;
 
 static const arrow_op_t ARROW_OPS[] = {
-    {"-->", NIXIE_EDGE_SOLID, 1},
-    {"-.->", NIXIE_EDGE_DOTTED, 1},
-    {"==>", NIXIE_EDGE_THICK, 1},
-    {"---", NIXIE_EDGE_SOLID, 0},
-    {"-.-", NIXIE_EDGE_DOTTED, 0},
-    {"===", NIXIE_EDGE_THICK, 0},
+    { "-->",  NIXIE_EDGE_SOLID,  1 },
+    { "-.->", NIXIE_EDGE_DOTTED, 1 },
+    { "==>",  NIXIE_EDGE_THICK,  1 },
+    { "---",  NIXIE_EDGE_SOLID,  0 },
+    { "-.-",  NIXIE_EDGE_DOTTED, 0 },
+    { "===",  NIXIE_EDGE_THICK,  0 },
 };
 #define ARROW_OP_COUNT (sizeof(ARROW_OPS) / sizeof(ARROW_OPS[0]))
 
 /* Matches "-->", "-.->", "==>", "---", "-.-", "===", optionally prefixed by
  * '<' (bidirectional) and optionally followed by "|label|". */
-static int try_match_arrow(
-    const char *text, nixie_arena_t *arena, int *has_arrow_start, nixie_edge_style_t *style,
-    int *has_arrow_end, char **label_out, size_t *consumed_out) {
-    const char *p = text;
+static int try_match_arrow(const char *text, nixie_arena_t *arena, int *has_arrow_start, nixie_edge_style_t *style, int *has_arrow_end, char **label_out, size_t *consumed_out) {
+    const char *p   = text;
     int arrow_start = 0;
     if (*p == '<') {
         arrow_start = 1;
@@ -285,37 +283,35 @@ static int try_match_arrow(
         }
 
         const char *q = p + oplen;
-        char *label = NULL;
+        char *label   = NULL;
         if (*q == '|') {
             const char *close = strchr(q + 1, '|');
             if (close != NULL) {
                 label = normalize_label(arena, q + 1, (size_t)(close - (q + 1)));
-                q = close + 1;
+                q     = close + 1;
             }
         }
 
         *has_arrow_start = arrow_start;
-        *style = ARROW_OPS[i].style;
-        *has_arrow_end = ARROW_OPS[i].has_end;
-        *label_out = label;
-        *consumed_out = (size_t)(q - text);
+        *style           = ARROW_OPS[i].style;
+        *has_arrow_end   = ARROW_OPS[i].has_end;
+        *label_out       = label;
+        *consumed_out    = (size_t)(q - text);
         return 1;
     }
 
     return 0;
 }
 
-static const char *const TEXT_ARROW_OPEN_OPS[] = {"--", "-.", "=="};
-static const char *const TEXT_ARROW_CLOSE_OPS[] = {"-->", "---", ".->", "-.-", "==>", "==="};
+static const char *const TEXT_ARROW_OPEN_OPS[]  = { "--", "-.", "==" };
+static const char *const TEXT_ARROW_CLOSE_OPS[] = { "-->", "---", ".->", "-.-", "==>", "===" };
 
 /* Fallback for text-embedded label syntax: "-- Yes -->", "-. Maybe .->",
  * "== Sure ==>". Finds the shortest label (non-greedy, mirroring
  * beautiful-mermaid's TEXT_ARROW_REGEX) between whitespace-delimited open
  * and close operators. */
-static int try_match_text_arrow(
-    const char *text, nixie_arena_t *arena, int *has_arrow_start, nixie_edge_style_t *style,
-    int *has_arrow_end, char **label_out, size_t *consumed_out) {
-    const char *p = text;
+static int try_match_text_arrow(const char *text, nixie_arena_t *arena, int *has_arrow_start, nixie_edge_style_t *style, int *has_arrow_end, char **label_out, size_t *consumed_out) {
+    const char *p   = text;
     int arrow_start = 0;
     if (*p == '<') {
         arrow_start = 1;
@@ -324,22 +320,22 @@ static int try_match_text_arrow(
 
     for (size_t oi = 0; oi < 3; oi++) {
         const char *op = TEXT_ARROW_OPEN_OPS[oi];
-        size_t oplen = strlen(op);
+        size_t oplen   = strlen(op);
         if (strncmp(p, op, oplen) != 0) {
             continue;
         }
 
         const char *after_open = p + oplen;
-        size_t ws1 = skip_ws(after_open);
+        size_t ws1             = skip_ws(after_open);
         if (ws1 == 0) {
             continue;
         }
         const char *label_start = after_open + ws1;
-        size_t max_len = strlen(label_start);
+        size_t max_len          = strlen(label_start);
 
         for (size_t llen = 1; llen <= max_len; llen++) {
             const char *after_label = label_start + llen;
-            size_t ws2 = skip_ws(after_label);
+            size_t ws2              = skip_ws(after_label);
             if (ws2 == 0) {
                 continue;
             }
@@ -347,14 +343,13 @@ static int try_match_text_arrow(
 
             for (size_t ci = 0; ci < 6; ci++) {
                 const char *close_op = TEXT_ARROW_CLOSE_OPS[ci];
-                size_t clen = strlen(close_op);
+                size_t clen          = strlen(close_op);
                 if (strncmp(close_pos, close_op, clen) != 0) {
                     continue;
                 }
 
                 size_t trimmed_len = llen;
-                while (trimmed_len > 0 &&
-                       (label_start[trimmed_len - 1] == ' ' || label_start[trimmed_len - 1] == '\t')) {
+                while (trimmed_len > 0 && (label_start[trimmed_len - 1] == ' ' || label_start[trimmed_len - 1] == '\t')) {
                     trimmed_len--;
                 }
                 if (trimmed_len == 0) {
@@ -371,10 +366,10 @@ static int try_match_text_arrow(
                 }
 
                 *has_arrow_start = arrow_start;
-                *style = st;
-                *has_arrow_end = close_op[clen - 1] == '>';
-                *label_out = normalize_label(arena, label_start, trimmed_len);
-                *consumed_out = (size_t)(close_pos + clen - text);
+                *style           = st;
+                *has_arrow_end   = close_op[clen - 1] == '>';
+                *label_out       = normalize_label(arena, label_start, trimmed_len);
+                *consumed_out    = (size_t)(close_pos + clen - text);
                 return 1;
             }
         }
@@ -397,7 +392,7 @@ static void parse_edge_line(nixie_arena_t *arena, nixie_mm_graph_t *g, const cha
     }
     pos += first_group.consumed;
 
-    int *prev_ids = first_group.ids;
+    int *prev_ids     = first_group.ids;
     size_t prev_count = first_group.count;
 
     for (;;) {
@@ -406,11 +401,11 @@ static void parse_edge_line(nixie_arena_t *arena, nixie_mm_graph_t *g, const cha
             break;
         }
 
-        int has_arrow_start = 0;
+        int has_arrow_start      = 0;
         nixie_edge_style_t style = NIXIE_EDGE_SOLID;
-        int has_arrow_end = 0;
-        char *label = NULL;
-        size_t arrow_consumed = 0;
+        int has_arrow_end        = 0;
+        char *label              = NULL;
+        size_t arrow_consumed    = 0;
 
         int matched = try_match_arrow(line + pos, arena, &has_arrow_start, &style, &has_arrow_end, &label, &arrow_consumed);
         if (!matched) {
@@ -433,16 +428,16 @@ static void parse_edge_line(nixie_arena_t *arena, nixie_mm_graph_t *g, const cha
             for (size_t ti = 0; ti < next_group.count; ti++) {
                 nixie_mm_ensure_edge_capacity(arena, g);
                 nixie_mm_edge_t *e = &g->edges[g->edge_count++];
-                e->source_idx = prev_ids[si];
-                e->target_idx = next_group.ids[ti];
-                e->label = label;
-                e->style = style;
+                e->source_idx      = prev_ids[si];
+                e->target_idx      = next_group.ids[ti];
+                e->label           = label;
+                e->style           = style;
                 e->has_arrow_start = has_arrow_start;
-                e->has_arrow_end = has_arrow_end;
+                e->has_arrow_end   = has_arrow_end;
             }
         }
 
-        prev_ids = next_group.ids;
+        prev_ids   = next_group.ids;
         prev_count = next_group.count;
     }
 }
@@ -512,13 +507,20 @@ static int starts_with_kw(const char *line, const char *kw) {
  * skipped rather than mis-parsed as edges -- see model.h's note on reserved
  * fields for the future subgraph-nested layout work. */
 static int is_skipped_directive(const char *line) {
-    if (strcmp(line, "end") == 0) return 1;
-    if (starts_with_kw(line, "subgraph")) return 1;
-    if (starts_with_kw(line, "direction")) return 1;
-    if (starts_with_kw(line, "classDef")) return 1;
-    if (starts_with_kw(line, "class")) return 1;
-    if (starts_with_kw(line, "style")) return 1;
-    if (starts_with_kw(line, "linkStyle")) return 1;
+    if (strcmp(line, "end") == 0)
+        return 1;
+    if (starts_with_kw(line, "subgraph"))
+        return 1;
+    if (starts_with_kw(line, "direction"))
+        return 1;
+    if (starts_with_kw(line, "classDef"))
+        return 1;
+    if (starts_with_kw(line, "class"))
+        return 1;
+    if (starts_with_kw(line, "style"))
+        return 1;
+    if (starts_with_kw(line, "linkStyle"))
+        return 1;
     return 0;
 }
 
@@ -528,10 +530,10 @@ static int is_skipped_directive(const char *line) {
 
 nixie_parse_result_t nixie_flowchart_parse(nixie_arena_t *arena, const char *text) {
     nixie_parse_result_t result;
-    result.graph = NULL;
-    result.error = NIXIE_OK;
+    result.graph            = NULL;
+    result.error            = NIXIE_OK;
     result.error_message[0] = '\0';
-    result.error_line = -1;
+    result.error_line       = -1;
 
     nixie_sig_lines_t sig = nixie_split_significant_lines(arena, text);
 
@@ -544,16 +546,14 @@ nixie_parse_result_t nixie_flowchart_parse(nixie_arena_t *arena, const char *tex
     nixie_direction_t direction;
     if (!parse_header(sig.lines[0].content, strlen(sig.lines[0].content), &direction)) {
         result.error = NIXIE_ERROR_UNKNOWN_HEADER;
-        snprintf(result.error_message, sizeof(result.error_message),
-                 "Invalid mermaid header: \"%s\". Expected \"graph TD\", \"flowchart LR\", etc.",
-                 sig.lines[0].content);
+        snprintf(result.error_message, sizeof(result.error_message), "Invalid mermaid header: \"%s\". Expected \"graph TD\", \"flowchart LR\", etc.", sig.lines[0].content);
         result.error_line = sig.lines[0].line_no;
         return result;
     }
 
     nixie_mm_graph_t *graph = (nixie_mm_graph_t *)nixie_arena_alloc_zeroed(arena, sizeof(nixie_mm_graph_t));
-    graph->direction = direction;
-    graph->node_index = nixie_strmap_create(arena, 64);
+    graph->direction        = direction;
+    graph->node_index       = nixie_strmap_create(arena, 64);
 
     for (size_t i = 1; i < sig.count; i++) {
         const char *line = sig.lines[i].content;

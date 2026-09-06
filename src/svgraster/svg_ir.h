@@ -50,7 +50,7 @@ typedef struct nixie_svg_paint {
     nixie_rgb_t stroke;
     int has_stroke;
     double stroke_width;
-    double opacity;          /* 0..1, default 1 */
+    double opacity;           /* 0..1, default 1 */
     double dash_on, dash_off; /* 0,0 == solid */
 } nixie_svg_paint_t;
 

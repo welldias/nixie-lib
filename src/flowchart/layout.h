@@ -12,7 +12,6 @@ typedef struct nixie_layout_options {
 } nixie_layout_options_t;
 
 /* opts may be NULL to use sensible defaults. */
-nixie_positioned_flowchart_t *nixie_flowchart_layout(
-    nixie_arena_t *arena, const nixie_mm_graph_t *graph, const nixie_layout_options_t *opts);
+nixie_positioned_flowchart_t *nixie_flowchart_layout(nixie_arena_t *arena, const nixie_mm_graph_t *graph, const nixie_layout_options_t *opts);
 
 #endif /* NIXIE_FLOWCHART_LAYOUT_H */

@@ -35,8 +35,8 @@ typedef struct nixie_lg_node {
 } nixie_lg_node_t;
 
 typedef struct nixie_lg_edge {
-    int from; /* node index */
-    int to;   /* node index */
+    int from;     /* node index */
+    int to;       /* node index */
     int reversed; /* set by nixie_lg_break_cycles(); used only during layering */
 } nixie_lg_edge_t;
 
@@ -69,7 +69,6 @@ typedef struct nixie_lg_points {
  * the boundary of edge->to, based on their already-computed positions. Must
  * be called after nixie_lg_assign_coordinates(). Points are allocated from
  * `arena`. */
-nixie_lg_points_t nixie_lg_route_edge(
-    nixie_arena_t *arena, const nixie_lg_graph_t *g, const nixie_lg_edge_t *e);
+nixie_lg_points_t nixie_lg_route_edge(nixie_arena_t *arena, const nixie_lg_graph_t *g, const nixie_lg_edge_t *e);
 
 #endif /* NIXIE_LAYOUT_LAYERED_H */

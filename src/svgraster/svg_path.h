@@ -37,8 +37,7 @@ void nixie_polyline_list_push(nixie_arena_t *arena, nixie_polyline_list_t *list,
  * less than `tolerance`, then appends the flattened points (excluding p0,
  * which the caller is assumed to have already appended) to `out`.
  */
-void nixie_flatten_cubic(nixie_arena_t *arena, nixie_point_t p0, nixie_point_t c1, nixie_point_t c2, nixie_point_t p3,
-                          double tolerance, int depth, nixie_point_list_t *out);
+void nixie_flatten_cubic(nixie_arena_t *arena, nixie_point_t p0, nixie_point_t c1, nixie_point_t c2, nixie_point_t p3, double tolerance, int depth, nixie_point_list_t *out);
 
 /*
  * Converts one shape's path_ops (possibly containing multiple M...Z
@@ -56,8 +55,7 @@ nixie_polyline_list_t nixie_flatten_path(nixie_arena_t *arena, const nixie_path_
  * into every shape's geometry once, up front, so nothing downstream needs
  * a separate scale parameter.
  */
-nixie_point_list_t nixie_tessellate_rounded_rect(nixie_arena_t *arena, double x, double y, double w, double h, double rx,
-                                                  double ry);
+nixie_point_list_t nixie_tessellate_rounded_rect(nixie_arena_t *arena, double x, double y, double w, double h, double rx, double ry);
 
 /* Tessellates an ellipse (rx==ry => circle) into a closed polygon. */
 nixie_point_list_t nixie_tessellate_ellipse(nixie_arena_t *arena, double cx, double cy, double rx, double ry);

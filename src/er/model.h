@@ -12,8 +12,8 @@
 typedef struct nixie_er_attribute {
     char *type;
     char *name;
-    int keys;        /* bitmask of NIXIE_ER_KEY_* */
-    char *comment;   /* nullable */
+    int keys;      /* bitmask of NIXIE_ER_KEY_* */
+    char *comment; /* nullable */
 } nixie_er_attribute_t;
 
 typedef struct nixie_er_entity {

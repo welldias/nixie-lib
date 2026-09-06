@@ -35,7 +35,6 @@ typedef struct nixie_multiline_metrics {
 
 /* Splits text on '\n' and measures it, mirroring
  * beautiful-mermaid/src/text-metrics.ts's measureMultilineText(). */
-nixie_multiline_metrics_t nixie_measure_multiline(
-    nixie_arena_t *arena, const char *text, double font_size, int font_weight);
+nixie_multiline_metrics_t nixie_measure_multiline(nixie_arena_t *arena, const char *text, double font_size, int font_weight);
 
 #endif /* NIXIE_TEXT_METRICS_H */

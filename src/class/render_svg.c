@@ -17,25 +17,48 @@ static void append_escaped_xml(nixie_strbuf_t *sb, const char *text, size_t len)
     for (size_t i = 0; i < len; i++) {
         char c = text[i];
         switch (c) {
-            case '&': nixie_strbuf_append(sb, "&amp;"); break;
-            case '<': nixie_strbuf_append(sb, "&lt;"); break;
-            case '>': nixie_strbuf_append(sb, "&gt;"); break;
-            case '"': nixie_strbuf_append(sb, "&quot;"); break;
-            case '\'': nixie_strbuf_append(sb, "&#39;"); break;
-            default: nixie_strbuf_append_char(sb, c); break;
+        case '&':
+            nixie_strbuf_append(sb, "&amp;");
+            break;
+        case '<':
+            nixie_strbuf_append(sb, "&lt;");
+            break;
+        case '>':
+            nixie_strbuf_append(sb, "&gt;");
+            break;
+        case '"':
+            nixie_strbuf_append(sb, "&quot;");
+            break;
+        case '\'':
+            nixie_strbuf_append(sb, "&#39;");
+            break;
+        default:
+            nixie_strbuf_append_char(sb, c);
+            break;
         }
     }
 }
 
 static void append_escaped_attr(nixie_strbuf_t *sb, const char *text) {
-    if (text == NULL) return;
+    if (text == NULL)
+        return;
     for (const char *p = text; *p != '\0'; p++) {
         switch (*p) {
-            case '&': nixie_strbuf_append(sb, "&amp;"); break;
-            case '"': nixie_strbuf_append(sb, "&quot;"); break;
-            case '<': nixie_strbuf_append(sb, "&lt;"); break;
-            case '>': nixie_strbuf_append(sb, "&gt;"); break;
-            default: nixie_strbuf_append_char(sb, *p); break;
+        case '&':
+            nixie_strbuf_append(sb, "&amp;");
+            break;
+        case '"':
+            nixie_strbuf_append(sb, "&quot;");
+            break;
+        case '<':
+            nixie_strbuf_append(sb, "&lt;");
+            break;
+        case '>':
+            nixie_strbuf_append(sb, "&gt;");
+            break;
+        default:
+            nixie_strbuf_append_char(sb, *p);
+            break;
         }
     }
 }
@@ -43,13 +66,13 @@ static void append_escaped_attr(nixie_strbuf_t *sb, const char *text) {
 static size_t count_lines(const char *text) {
     size_t n = 1;
     for (const char *p = text; *p != '\0'; p++) {
-        if (*p == '\n') n++;
+        if (*p == '\n')
+            n++;
     }
     return n;
 }
 
-static void render_multiline_text(
-    nixie_strbuf_t *sb, const char *text, double cx, double cy, double font_size, const char *attrs) {
+static void render_multiline_text(nixie_strbuf_t *sb, const char *text, double cx, double cy, double font_size, const char *attrs) {
     size_t line_count = count_lines(text);
 
     if (line_count == 1) {
@@ -61,12 +84,12 @@ static void render_multiline_text(
     }
 
     double line_height = font_size * NIXIE_LINE_HEIGHT_RATIO;
-    double first_dy = -(((double)line_count - 1.0) / 2.0) * line_height + font_size * 0.35;
+    double first_dy    = -(((double)line_count - 1.0) / 2.0) * line_height + font_size * 0.35;
 
     nixie_strbuf_appendf(sb, "<text x=\"%g\" y=\"%g\" %s>", cx, cy, attrs);
 
     const char *line_start = text;
-    size_t idx = 0;
+    size_t idx             = 0;
     for (const char *p = text;; p++) {
         if (*p == '\n' || *p == '\0') {
             double dy = idx == 0 ? first_dy : line_height;
@@ -74,7 +97,8 @@ static void render_multiline_text(
             append_escaped_xml(sb, line_start, (size_t)(p - line_start));
             nixie_strbuf_append(sb, "</tspan>");
             idx++;
-            if (*p == '\0') break;
+            if (*p == '\0')
+                break;
             line_start = p + 1;
         }
     }
@@ -107,13 +131,17 @@ static void append_marker_defs(nixie_strbuf_t *sb, const nixie_resolved_colors_t
 
 static const char *marker_id_for(nixie_relationship_type_t type) {
     switch (type) {
-        case NIXIE_REL_INHERITANCE:
-        case NIXIE_REL_REALIZATION: return "cls-inherit";
-        case NIXIE_REL_COMPOSITION: return "cls-composition";
-        case NIXIE_REL_AGGREGATION: return "cls-aggregation";
-        case NIXIE_REL_ASSOCIATION:
-        case NIXIE_REL_DEPENDENCY:
-        default: return "cls-arrow";
+    case NIXIE_REL_INHERITANCE:
+    case NIXIE_REL_REALIZATION:
+        return "cls-inherit";
+    case NIXIE_REL_COMPOSITION:
+        return "cls-composition";
+    case NIXIE_REL_AGGREGATION:
+        return "cls-aggregation";
+    case NIXIE_REL_ASSOCIATION:
+    case NIXIE_REL_DEPENDENCY:
+    default:
+        return "cls-arrow";
     }
 }
 
@@ -122,18 +150,19 @@ static const char *marker_id_for(nixie_relationship_type_t type) {
  * ========================================================================== */
 
 static void render_relationship(nixie_strbuf_t *sb, const nixie_pc_relationship_t *rel, const nixie_resolved_colors_t *colors) {
-    if (rel->point_count < 2) return;
+    if (rel->point_count < 2)
+        return;
 
-    int dashed = (rel->type == NIXIE_REL_DEPENDENCY || rel->type == NIXIE_REL_REALIZATION);
+    int dashed            = (rel->type == NIXIE_REL_DEPENDENCY || rel->type == NIXIE_REL_REALIZATION);
     const char *marker_id = marker_id_for(rel->type);
 
     nixie_strbuf_append(sb, "<polyline class=\"class-relationship\" points=\"");
     for (size_t i = 0; i < rel->point_count; i++) {
-        if (i > 0) nixie_strbuf_append_char(sb, ' ');
+        if (i > 0)
+            nixie_strbuf_append_char(sb, ' ');
         nixie_strbuf_appendf(sb, "%g,%g", rel->points[i].x, rel->points[i].y);
     }
-    nixie_strbuf_appendf(sb, "\" fill=\"none\" stroke=\"%s\" stroke-width=\"1\"%s",
-        colors->line, dashed ? " stroke-dasharray=\"6 4\"" : "");
+    nixie_strbuf_appendf(sb, "\" fill=\"none\" stroke=\"%s\" stroke-width=\"1\"%s", colors->line, dashed ? " stroke-dasharray=\"6 4\"" : "");
     if (rel->marker_at == NIXIE_MARKER_FROM) {
         nixie_strbuf_appendf(sb, " marker-start=\"url(#%s)\"", marker_id);
     } else {
@@ -144,7 +173,7 @@ static void render_relationship(nixie_strbuf_t *sb, const nixie_pc_relationship_
 
 static nixie_point_t rel_midpoint(const nixie_point_t *points, size_t count) {
     if (count == 0) {
-        nixie_point_t zero = {0, 0};
+        nixie_point_t zero = { 0, 0 };
         return zero;
     }
     return points[count / 2];
@@ -164,8 +193,10 @@ static nixie_point_t cardinality_offset(nixie_point_t from, nixie_point_t to) {
 }
 
 static void render_relationship_labels(nixie_strbuf_t *sb, const nixie_pc_relationship_t *rel, const nixie_resolved_colors_t *colors) {
-    if (rel->label == NULL && rel->from_cardinality == NULL && rel->to_cardinality == NULL) return;
-    if (rel->point_count < 2) return;
+    if (rel->label == NULL && rel->from_cardinality == NULL && rel->to_cardinality == NULL)
+        return;
+    if (rel->point_count < 2)
+        return;
 
     char attrs[160];
     snprintf(attrs, sizeof(attrs), "font-size=\"11\" text-anchor=\"middle\" font-weight=\"400\" fill=\"%s\"", colors->text_muted);
@@ -176,16 +207,16 @@ static void render_relationship_labels(nixie_strbuf_t *sb, const nixie_pc_relati
         nixie_strbuf_append(sb, "\n");
     }
     if (rel->from_cardinality != NULL) {
-        nixie_point_t p = rel->points[0];
+        nixie_point_t p    = rel->points[0];
         nixie_point_t next = rel->points[1];
-        nixie_point_t off = cardinality_offset(p, next);
+        nixie_point_t off  = cardinality_offset(p, next);
         render_multiline_text(sb, rel->from_cardinality, p.x + off.x, p.y + off.y, 11.0, attrs);
         nixie_strbuf_append(sb, "\n");
     }
     if (rel->to_cardinality != NULL) {
-        nixie_point_t p = rel->points[rel->point_count - 1];
+        nixie_point_t p    = rel->points[rel->point_count - 1];
         nixie_point_t prev = rel->points[rel->point_count - 2];
-        nixie_point_t off = cardinality_offset(p, prev);
+        nixie_point_t off  = cardinality_offset(p, prev);
         render_multiline_text(sb, rel->to_cardinality, p.x + off.x, p.y + off.y, 11.0, attrs);
         nixie_strbuf_append(sb, "\n");
     }
@@ -197,11 +228,16 @@ static void render_relationship_labels(nixie_strbuf_t *sb, const nixie_pc_relati
 
 static char visibility_char(nixie_visibility_t v) {
     switch (v) {
-        case NIXIE_VIS_PUBLIC: return '+';
-        case NIXIE_VIS_PRIVATE: return '-';
-        case NIXIE_VIS_PROTECTED: return '#';
-        case NIXIE_VIS_PACKAGE: return '~';
-        default: return '\0';
+    case NIXIE_VIS_PUBLIC:
+        return '+';
+    case NIXIE_VIS_PRIVATE:
+        return '-';
+    case NIXIE_VIS_PROTECTED:
+        return '#';
+    case NIXIE_VIS_PACKAGE:
+        return '~';
+    default:
+        return '\0';
     }
 }
 
@@ -209,8 +245,7 @@ static void render_member_row(nixie_strbuf_t *sb, const nixie_class_member_t *m,
     const char *font_style = m->is_abstract ? " font-style=\"italic\"" : "";
     const char *decoration = m->is_static ? " text-decoration=\"underline\"" : "";
 
-    nixie_strbuf_appendf(sb, "<text x=\"%g\" y=\"%g\" class=\"mono\" dy=\"0.35em\" font-size=\"11\" font-weight=\"400\"%s%s>",
-        x, y, font_style, decoration);
+    nixie_strbuf_appendf(sb, "<text x=\"%g\" y=\"%g\" class=\"mono\" dy=\"0.35em\" font-size=\"11\" font-weight=\"400\"%s%s>", x, y, font_style, decoration);
 
     char vis = visibility_char(m->visibility);
     if (vis != '\0') {
@@ -221,7 +256,8 @@ static void render_member_row(nixie_strbuf_t *sb, const nixie_class_member_t *m,
     append_escaped_xml(sb, m->name, strlen(m->name));
     if (m->is_method) {
         nixie_strbuf_append_char(sb, '(');
-        if (m->params != NULL) append_escaped_xml(sb, m->params, strlen(m->params));
+        if (m->params != NULL)
+            append_escaped_xml(sb, m->params, strlen(m->params));
         nixie_strbuf_append_char(sb, ')');
     }
     nixie_strbuf_append(sb, "</tspan>");
@@ -249,10 +285,8 @@ static void render_class_box(nixie_strbuf_t *sb, const nixie_pc_node_t *cls, con
     }
     nixie_strbuf_append(sb, "\">\n");
 
-    nixie_strbuf_appendf(sb, "<rect x=\"%g\" y=\"%g\" width=\"%g\" height=\"%g\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" />\n",
-        x, y, w, h, colors->node_fill, colors->node_stroke);
-    nixie_strbuf_appendf(sb, "<rect x=\"%g\" y=\"%g\" width=\"%g\" height=\"%g\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" />\n",
-        x, y, w, cls->header_h, colors->group_hdr, colors->node_stroke);
+    nixie_strbuf_appendf(sb, "<rect x=\"%g\" y=\"%g\" width=\"%g\" height=\"%g\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" />\n", x, y, w, h, colors->node_fill, colors->node_stroke);
+    nixie_strbuf_appendf(sb, "<rect x=\"%g\" y=\"%g\" width=\"%g\" height=\"%g\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" />\n", x, y, w, cls->header_h, colors->group_hdr, colors->node_stroke);
 
     double name_y = y + cls->header_h / 2.0;
     if (cls->annotation != NULL) {
@@ -272,8 +306,7 @@ static void render_class_box(nixie_strbuf_t *sb, const nixie_pc_node_t *cls, con
     nixie_strbuf_append(sb, "\n");
 
     double attr_top = y + cls->header_h;
-    nixie_strbuf_appendf(sb, "<line x1=\"%g\" y1=\"%g\" x2=\"%g\" y2=\"%g\" stroke=\"%s\" stroke-width=\"0.75\" />\n",
-        x, attr_top, x + w, attr_top, colors->node_stroke);
+    nixie_strbuf_appendf(sb, "<line x1=\"%g\" y1=\"%g\" x2=\"%g\" y2=\"%g\" stroke=\"%s\" stroke-width=\"0.75\" />\n", x, attr_top, x + w, attr_top, colors->node_stroke);
 
     for (size_t i = 0; i < cls->attribute_count; i++) {
         double member_y = attr_top + 4.0 + (double)i * 20.0 + 10.0;
@@ -282,8 +315,7 @@ static void render_class_box(nixie_strbuf_t *sb, const nixie_pc_node_t *cls, con
     }
 
     double method_top = attr_top + cls->attr_h;
-    nixie_strbuf_appendf(sb, "<line x1=\"%g\" y1=\"%g\" x2=\"%g\" y2=\"%g\" stroke=\"%s\" stroke-width=\"0.75\" />\n",
-        x, method_top, x + w, method_top, colors->node_stroke);
+    nixie_strbuf_appendf(sb, "<line x1=\"%g\" y1=\"%g\" x2=\"%g\" y2=\"%g\" stroke=\"%s\" stroke-width=\"0.75\" />\n", x, method_top, x + w, method_top, colors->node_stroke);
 
     for (size_t i = 0; i < cls->method_count; i++) {
         double member_y = method_top + 4.0 + (double)i * 20.0 + 10.0;
@@ -298,19 +330,16 @@ static void render_class_box(nixie_strbuf_t *sb, const nixie_pc_node_t *cls, con
  * Entry point
  * ========================================================================== */
 
-char *nixie_class_render_svg(
-    const nixie_positioned_class_diagram_t *pcd, const nixie_resolved_colors_t *colors, int transparent) {
+char *nixie_class_render_svg(const nixie_positioned_class_diagram_t *pcd, const nixie_resolved_colors_t *colors, int transparent) {
     nixie_strbuf_t sb;
     nixie_strbuf_init(&sb);
 
-    nixie_strbuf_appendf(&sb, "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %g %g\" width=\"%g\" height=\"%g\"",
-        pcd->width, pcd->height, pcd->width, pcd->height);
+    nixie_strbuf_appendf(&sb, "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %g %g\" width=\"%g\" height=\"%g\"", pcd->width, pcd->height, pcd->width, pcd->height);
     if (!transparent) {
         nixie_strbuf_appendf(&sb, " style=\"background:%s\"", colors->bg);
     }
     nixie_strbuf_append(&sb, ">\n");
-    nixie_strbuf_append(&sb,
-        "<style>text{font-family:'Inter',system-ui,sans-serif;}.mono{font-family:'JetBrains Mono','SF Mono',monospace;}</style>\n");
+    nixie_strbuf_append(&sb, "<style>text{font-family:'Inter',system-ui,sans-serif;}.mono{font-family:'JetBrains Mono','SF Mono',monospace;}</style>\n");
 
     nixie_strbuf_append(&sb, "<defs>\n");
     append_marker_defs(&sb, colors);

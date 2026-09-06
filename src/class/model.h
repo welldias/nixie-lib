@@ -25,7 +25,7 @@ typedef struct nixie_class_member {
 
 typedef struct nixie_class_node {
     char *id;
-    char *label; /* defaults to id; becomes "id<Generic>" for `class Id~Generic~` */
+    char *label;      /* defaults to id; becomes "id<Generic>" for `class Id~Generic~` */
     char *annotation; /* nullable: <<interface>>, <<abstract>>, ... */
 
     nixie_class_member_t *attributes;
