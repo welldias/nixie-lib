@@ -12,6 +12,10 @@ It supports the following Mermaid diagram types:
 - Entity-relationship diagrams (`erDiagram`)
 - XY charts (`xychart-beta`)
 
+## Examples
+
+![](sequence-diagram.png)
+![](xychart.png)
 
 ## Building
 
