@@ -54,7 +54,7 @@ typedef enum nixie_theme_name {
     NIXIE_THEME_SOLARIZED_LIGHT,
     NIXIE_THEME_SOLARIZED_DARK,
     NIXIE_THEME_ONE_DARK,
-    NINIE_THEM_COFFEE_BEAN,
+    NIXIE_THEME_COFFEE_BEAN,
     NIXIE_THEME_COUNT
 } nixie_theme_name_t;
 
