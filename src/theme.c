@@ -83,6 +83,10 @@ const nixie_diagram_colors_t NIXIE_THEMES[NIXIE_THEME_COUNT] = {
         .bg = "#282c34", .fg = "#abb2bf",
         .line = "#4b5263", .accent = "#c678dd", .muted = "#5c6370", .surface = NULL, .border = NULL,
     },
+    [NINIE_THEM_COFFEE_BEAN] = {
+        .bg = "#f3e9dc", .fg = "#5e3023",
+        .line = "#644239", .accent = "#856258", .muted = "#5e3023", .surface = NULL, .border = NULL,
+    },
 };
 
 static const char *NIXIE_THEME_NAMES[NIXIE_THEME_COUNT] = {
@@ -101,6 +105,7 @@ static const char *NIXIE_THEME_NAMES[NIXIE_THEME_COUNT] = {
     "solarized-light",
     "solarized-dark",
     "one-dark",
+    "coffee-bean",
 };
 
 const nixie_diagram_colors_t *nixie_theme_lookup(nixie_theme_name_t name) {

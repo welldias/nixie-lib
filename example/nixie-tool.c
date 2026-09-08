@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    render_options.theme       = NIXIE_THEME_CATPPUCCIN_MOCHA;
+    render_options.theme       = NINIE_THEM_COFFEE_BEAN;
     render_options.transparent = 1;
     render_options.use_unicode = 1;
     render_options.font_path   = font_path;
